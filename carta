@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para Mi Amor ❤️</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',sans-serif;
+}
+
+body{
+    height:100vh;
+    overflow:hidden;
+    background:linear-gradient(135deg,#ff6b8a,#ffb6c1);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* Pétalos */
+.petalo{
+    position:fixed;
+    top:-50px;
+    pointer-events:none;
+    z-index:0;
+    animation:caer linear forwards;
+}
+
+@keyframes caer{
+    from{
+        transform:translateY(-50px) rotate(0deg);
+        opacity:1;
+    }
+    to{
+        transform:translateY(110vh) translateX(100px) rotate(720deg);
+        opacity:0;
+    }
+}
+
+/* Corazones */
+.corazon{
+    position:fixed;
+    bottom:-20px;
+    color:rgba(255,255,255,.8);
+    animation:subir linear forwards;
+    z-index:0;
+}
+
+@keyframes subir{
+    from{
+        transform:translateY(0) scale(.5);
+        opacity:1;
+    }
+    to{
+        transform:translateY(-110vh) scale(1.5);
+        opacity:0;
+    }
+}
+
+/* Sobre */
+.sobre{
+    position:relative;
+    width:350px;
+    height:240px;
+    cursor:pointer;
+    z-index:10;
+}
+
+.base{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:#fff;
+    border-radius:0 0 15px 15px;
+    box-shadow:0 15px 40px rgba(0,0,0,.3);
+}
+
+.tapa{
+    position:absolute;
+    width:100%;
+    height:120px;
+    background:#ff4d79;
+    clip-path:polygon(0 0,100% 0,50% 100%);
+    transform-origin:top;
+    transition:1s;
+    z-index:5;
+}
+
+.carta{
+    position:absolute;
+    width:90%;
+    height:450px;
+    left:5%;
+    top:10px;
+    background:white;
+    border-radius:15px;
+    padding:20px;
+    overflow:auto;
+    transition:1s;
+    box-shadow:0 5px 20px rgba(0,0,0,.2);
+}
+
+.abierto .tapa{
+    transform:rotateX(180deg);
+}
+
+.abierto .carta{
+    transform:translateY(-280px);
+}
+
+h1{
+    color:#ff4d79;
+    text-align:center;
+    margin-bottom:15px;
+}
+
+p{
+    line-height:1.7;
+    color:#444;
+    margin-bottom:15px;
+}
+
+.galeria{
+    display:flex;
+    gap:10px;
+    justify-content:center;
+    flex-wrap:wrap;
+    margin:20px 0;
+}
+
+.galeria img{
+    width:110px;
+    height:110px;
+    object-fit:cover;
+    border-radius:10px;
+    box-shadow:0 3px 10px rgba(0,0,0,.2);
+}
+
+.firma{
+    text-align:center;
+    color:#ff4d79;
+    font-size:20px;
+    font-weight:bold;
+    margin-top:20px;
+}
+
+.texto{
+    position:absolute;
+    bottom:-40px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-weight:bold;
+    font-size:18px;
+}
+</style>
+</head>
+
+<body>
+
+<audio id="musica" loop>
+    <source src="musica.mp3" type="audio/mpeg">
+</audio>
+
+<div class="sobre" id="sobre">
+
+    <div class="tapa"></div>
+
+    <div class="base"></div>
+
+    <div class="carta">
+
+        <h1>❤️ Para Ti ❤️</h1>
+
+        <p>
+            Mi amor, esta carta es una pequeña muestra de todo lo que significas
+            para mí. Gracias por estar a mi lado, por tu cariño y por cada
+            momento que hemos compartido juntos.
+        </p>
+
+        <p>
+            Quiero que sepas que eres una persona muy especial en mi vida,
+            y cada día agradezco poder compartir momentos contigo.
+        </p>
+
+        <div class="galeria">
+            <!-- Reemplaza por fotos de ustedes -->
+            <img src="foto1.jpg">
+            <img src="foto2.jpg">
+            <img src="foto3.jpg">
+        </div>
+
+        <p>
+            Espero seguir creando recuerdos hermosos contigo y que esta carta
+            te recuerde lo mucho que te quiero.
+        </p>
+
+        <div class="firma">
+            Con amor,<br>
+            Jafeth ❤️
+        </div>
+
+    </div>
+
+    <div class="texto">
+        💌 Haz clic en el sobre
+    </div>
+
+</div>
+
+<script>
+// Abrir sobre
+const sobre=document.getElementById("sobre");
+const musica=document.getElementById("musica");
+
+sobre.addEventListener("click",()=>{
+    sobre.classList.toggle("abierto");
+    musica.play();
+});
+
+// Pétalos
+function crearPetalo(){
+    const p=document.createElement("div");
+    p.className="petalo";
+
+    const flores=["🌹","🌺","🌸","🌷"];
+    p.innerHTML=flores[Math.floor(Math.random()*flores.length)];
+
+    p.style.left=Math.random()*100+"vw";
+    p.style.fontSize=(20+Math.random()*20)+"px";
+    p.style.animationDuration=(5+Math.random()*5)+"s";
+
+    document.body.appendChild(p);
+
+    setTimeout(()=>p.remove(),10000);
+}
+
+setInterval(crearPetalo,250);
+
+// Corazones
+function crearCorazon(){
+    const c=document.createElement("div");
+    c.className="corazon";
+    c.innerHTML="❤️";
+
+    c.style.left=Math.random()*100+"vw";
+    c.style.fontSize=(15+Math.random()*25)+"px";
+    c.style.animationDuration=(4+Math.random()*4)+"s";
+
+    document.body.appendChild(c);
+
+    setTimeout(()=>c.remove(),8000);
+}
+
+setInterval(crearCorazon,500);
+</script>
+
+</body>
+</html>
